@@ -4,12 +4,13 @@ const db =require('../database/databaseConnection');
 const  createTask=async (req,resp)=>{
     const task={
         taskId:req.body.taskId,
-        taskName:req.body.taskName
+        taskName:req.body.taskName,
+        project_id:req.body.project_id
     }
 
-    const createQuery= 'INSERT INTO task(taskId,taskName) VALUES (?,?)';
+    const createQuery= 'INSERT INTO task(taskId,taskName,project_id) VALUES (?,?,?)';
     db.query(createQuery,[
-        task.taskId,task.taskName
+        task.taskId,task.taskName,task.project_id
     ],(err,result)=>{
         if(err){
             console.log(err);
